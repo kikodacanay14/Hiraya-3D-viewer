@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#090b0d" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2212%22 fill=%22%23090b0d%22/><path d=%22M18 13h6v15h16V13h6v38h-6V34H24v17h-6z%22 fill=%22%23d4a84f%22/></svg>"
+    />
+    <meta
+      name="description"
+      content="Interactive 3D viewer for the Hiraya event design."
+    />
+    <title>Hiraya — Interactive 3D Viewer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"
+    ></script>
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <main class="viewer-shell" id="viewer-shell">
+      <header class="viewer-header">
+        <div>
+          <p class="eyebrow">FOUNDEVER</p>
+          <h1>Hiraya</h1>
+        </div>
+        <p class="subtitle">Interactive 3D event preview</p>
+      </header>
+
+      <model-viewer
+        id="hiraya-viewer"
+        src="https://github.com/kikodacanay14/Hiraya-3D-viewer/releases/download/v1.0/Hiraya.glb"
+        alt="Interactive 3D model of the Hiraya event design"
+        camera-controls
+        touch-action="none"
+        camera-orbit="35deg 70deg 115%"
+        camera-target="auto auto auto"
+        field-of-view="35deg"
+        min-field-of-view="15deg"
+        max-field-of-view="55deg"
+        interaction-prompt="auto"
+        interaction-prompt-style="wiggle"
+        shadow-intensity="1"
+        tone-mapping="neutral"
+	exposure="0.3"
+      >
+        <div class="loading-state" id="loading-state" slot="poster">
+          <div class="loading-mark" aria-hidden="true"></div>
+          <p id="loading-label">Loading Hiraya 3D model…</p>
+          <div
+            class="loading-track"
+            role="progressbar"
+            aria-label="3D model loading progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            id="loading-progress"
+          >
+            <span id="loading-fill"></span>
+          </div>
+        </div>
+      </model-viewer>
+
+      <div class="viewer-controls" aria-label="3D viewer controls">
+        <button class="control-button" id="reset-view" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.93 4.93a10 10 0 1 1-1.88 11.38l1.9-.62a8 8 0 1 0 1.4-9.35L9 9H3V3l1.93 1.93Z" />
+          </svg>
+          Reset view
+        </button>
+        <button class="control-button" id="fullscreen" type="button">
+          <svg class="expand-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9V4h5v2H6v3H4Zm11-5h5v5h-2V6h-3V4ZM6 15v3h3v2H4v-5h2Zm12 3v-3h2v5h-5v-2h3Z" />
+          </svg>
+          <svg class="collapse-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 4v5H4V7h3V4h2Zm6 0h2v3h3v2h-5V4ZM4 15h5v5H7v-3H4v-2Zm16 0v2h-3v3h-2v-5h5Z" />
+          </svg>
+          <span id="fullscreen-label">Fullscreen</span>
+        </button>
+      </div>
+
+      <footer class="viewer-help">
+        <span><strong>Rotate</strong> drag</span>
+        <span><strong>Zoom</strong> scroll or pinch</span>
+        <span><strong>Pan</strong> right-drag, Shift-drag, or two fingers</span>
+      </footer>
+
+      <div class="error-state" id="error-state" role="alert" hidden>
+        <h2>The 3D model could not be loaded.</h2>
+        <p>Check your connection, then reload this page.</p>
+        <button type="button" id="reload-page">Reload</button>
+      </div>
+    </main>
+  </body>
+</html>

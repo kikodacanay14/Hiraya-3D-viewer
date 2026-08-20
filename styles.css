@@ -1,0 +1,337 @@
+:root {
+  color-scheme: dark;
+  font-family:
+    Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #090b0d;
+  color: #f6f1e7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+.viewer-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(176, 139, 67, 0.13), transparent 35%),
+    linear-gradient(145deg, #17191c 0%, #0b0d0f 58%, #050607 100%);
+}
+
+.viewer-shell::before {
+  position: absolute;
+  inset: 16px;
+  z-index: 4;
+  border: 1px solid rgba(219, 180, 102, 0.35);
+  pointer-events: none;
+  content: "";
+}
+
+.viewer-shell::after {
+  position: absolute;
+  inset: 22px;
+  z-index: 4;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+  content: "";
+}
+
+model-viewer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  --poster-color: transparent;
+  --progress-bar-color: #d4a84f;
+  --progress-bar-height: 3px;
+}
+
+model-viewer::part(default-progress-bar) {
+  display: none;
+}
+
+.viewer-header {
+  position: absolute;
+  top: 42px;
+  left: 48px;
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  pointer-events: none;
+}
+
+.viewer-header h1,
+.viewer-header p {
+  margin: 0;
+}
+
+.viewer-header h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.1rem, 5vw, 4.8rem);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+}
+
+.eyebrow {
+  margin-bottom: 8px !important;
+  color: #d9ae58;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+}
+
+.eyebrow span {
+  margin: 0 0.16em;
+}
+
+.subtitle {
+  padding-bottom: 4px;
+  color: rgba(246, 241, 231, 0.58);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.viewer-controls {
+  position: absolute;
+  top: 46px;
+  right: 48px;
+  z-index: 6;
+  display: flex;
+  gap: 8px;
+}
+
+.control-button,
+.error-state button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 16px;
+  border: 1px solid rgba(226, 190, 116, 0.3);
+  border-radius: 999px;
+  background: rgba(9, 11, 13, 0.76);
+  color: #f6f1e7;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
+  font-size: 0.78rem;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    transform 150ms ease;
+}
+
+.control-button:hover,
+.control-button:focus-visible,
+.error-state button:hover,
+.error-state button:focus-visible {
+  border-color: rgba(226, 190, 116, 0.82);
+  background: rgba(30, 27, 20, 0.9);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.control-button:focus-visible,
+.error-state button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(212, 168, 79, 0.24);
+}
+
+.control-button svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
+.collapse-icon {
+  display: none;
+}
+
+.viewer-shell:fullscreen .expand-icon {
+  display: none;
+}
+
+.viewer-shell:fullscreen .collapse-icon {
+  display: block;
+}
+
+.viewer-help {
+  position: absolute;
+  right: 48px;
+  bottom: 42px;
+  left: 48px;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  gap: clamp(14px, 3vw, 34px);
+  color: rgba(246, 241, 231, 0.58);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+.viewer-help span {
+  white-space: nowrap;
+}
+
+.viewer-help strong {
+  margin-right: 4px;
+  color: rgba(246, 241, 231, 0.92);
+  font-weight: 600;
+}
+
+.loading-state {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+  background:
+    radial-gradient(circle at center, rgba(176, 139, 67, 0.12), transparent 30%),
+    #090b0d;
+  color: rgba(246, 241, 231, 0.78);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.loading-state p {
+  margin: 0;
+}
+
+.loading-mark {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(212, 168, 79, 0.32);
+  transform: rotate(45deg);
+  animation: breathe 1.8s ease-in-out infinite;
+}
+
+.loading-track {
+  width: min(260px, 54vw);
+  height: 2px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.loading-track span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #d4a84f;
+  transition: width 120ms linear;
+}
+
+.error-state {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  padding: 32px;
+  background: rgba(5, 6, 7, 0.94);
+  text-align: center;
+}
+
+.error-state[hidden] {
+  display: none;
+}
+
+.error-state h2 {
+  margin: 0 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.error-state p {
+  margin: 0 0 22px;
+  color: rgba(246, 241, 231, 0.64);
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: rotate(45deg) scale(0.82);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+@media (max-width: 720px) {
+  .viewer-shell::before {
+    inset: 10px;
+  }
+
+  .viewer-shell::after {
+    inset: 15px;
+  }
+
+  .viewer-header {
+    top: 30px;
+    left: 30px;
+    display: block;
+  }
+
+  .subtitle {
+    margin-top: 9px !important;
+    font-size: 0.64rem;
+  }
+
+  .viewer-controls {
+    top: auto;
+    right: 24px;
+    bottom: 68px;
+    left: 24px;
+    justify-content: center;
+  }
+
+  .control-button {
+    min-width: 132px;
+  }
+
+  .viewer-help {
+    right: 24px;
+    bottom: 28px;
+    left: 24px;
+    gap: 12px;
+  }
+
+  .viewer-help span:last-child {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

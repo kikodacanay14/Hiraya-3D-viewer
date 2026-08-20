@@ -11,7 +11,7 @@ A static GitHub Pages viewer for the original `Hiraya.glb`, built with Google's
 - Reset View: restores the original camera position and target
 - Fullscreen: opens the viewer across the full display
 
-The viewer loads `Hiraya.glb` from the repository's `v1.0` GitHub Release. It is
+The viewer loads `Hiraya.glb` from the repository's `v1.1` GitHub Release. It is
 a web-specific export from the original Blender scene. The
 unsupported ballroom-wide `Haze` volume is excluded so it does not render as a
 solid box, while the scene's compatible point and spot lights are included via

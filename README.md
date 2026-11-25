@@ -21,9 +21,3 @@ emissive web geometry because GLB does not support Blender's volumetric shafts.
 The original `.blend` and source `.glb` remain untouched.
 
 GitHub Pages publishes the viewer through the repository's deployment workflow.
-
-## Rules for agents
-
-Claude and Codex chats follow `CLAUDE.md` here, including Kiko's "BSE development instructions" (25 Nov 2026): the
-Delivery Board (https://claude.ai/artifact/VDVXsxnpX36S91w8PXEauP) is the tracker and its Decisions tab holds approved
-rules; approvals and questions for Kiko go through Concord; files go in the BSE Apps & Systems shared Drive.
